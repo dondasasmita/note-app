@@ -17,9 +17,13 @@ const notes = require('./notes.js')
 const command = process.argv[2]
 
 if (command === 'add'){
-    //add some notes
+    notes.addNote()
 } else if (command === 'list') {
-    //show list of notes
-} else if (command === 'delete') {
-    //delete some notes
+    notes.listNote()
+} else if (command === 'remove') {
+    notes.removeNote()
+} else if (command === 'read'){
+    notes.readNote()
+} else {
+    console.log('Command is not recognized')
 }
