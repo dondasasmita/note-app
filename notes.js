@@ -42,14 +42,65 @@ const addNote =  (title, body) => {
 
 const removeNote = (title) => {
     console.log('removing note')
+    //try to open the file
+    try {
+        //fetching and store the notes array from the file to the variable 
+        let notesString = fs.readFileSync('note-data.json')
+        //parse to JSON
+        notes = JSON.parse(notesString)
+    }
+    catch (e){
+        //prompt admin the directory does not exists
+    }
+    
+    //find the title
+    for (var i = 0 ; i < notes.length; i++){
+        if (notes[i].title === title){
+            //delete the object from the array
+            delete notes[i].body
+            delete notes[i].title
+        } 
+    } 
+
 }
 
 const readNote = (title) => {
-    console.log('reading note')
+    console.log('Finding note')
+    //try to open the file
+    try {
+        //fetching and store the notes array from the file to the variable 
+        let notesString = fs.readFileSync('note-data.json')
+        //parse to JSON
+        notes = JSON.parse(notesString)
+    }
+    catch (e){
+        //prompt admin the directory does not exists
+    }
+    
+    //find the title
+    for (var i = 0 ; i < notes.length; i++){
+        if (notes[i].title === title){
+            //print the obj.body to the console
+            console.log('Note found : \n' + notes[i].body)
+        } 
+    } 
 }
 
 const listNote = () =>{
     console.log('retreiving note')
+    try {
+        //fetching and store the notes array from the file to the variable 
+        let notesString = fs.readFileSync('note-data.json')
+        //parse to JSON
+        notes = JSON.parse(notesString)
+    }
+    catch (e){
+        //prompt admin the directory does not exists
+    }
+
+    notes.forEach(note => {
+        console.log(note.title)
+    });
 }
 
 module.exports = {
