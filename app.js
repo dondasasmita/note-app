@@ -5,25 +5,30 @@ Using the built-in file system module of NodeJS
 
 console.log('Starting app.')
 
-//to load in all the contents of the fs modules to variable 
+//to load in all the contents of the fs, lodash, and yargs modules to variable 
 const fs = require('fs')
-//to load and store the contents of the lodash module in a variable
 const _ = require('lodash')
+const yargs = require('yargs')
 
 //to load the contents of the note.js file
 const notes = require('./notes.js')
 
-//access the process that are passed in when starting the program
-const command = process.argv[2]
+//access the process/arguments that are passed in the command line 
+const argv = yargs.argv
+const command = argv._[0]
+const title = argv.title
+const body = argv.body
 
+//command add, list, remove and read calling their functions from notes module
 if (command === 'add'){
-    notes.addNote()
+    notes.addNote(title,body)
 } else if (command === 'list') {
     notes.listNote()
 } else if (command === 'remove') {
-    notes.removeNote()
+    notes.removeNote(argv.title)
 } else if (command === 'read'){
-    notes.readNote()
+    notes.readNote(argv.title)
 } else {
     console.log('Command is not recognized')
 }
+
