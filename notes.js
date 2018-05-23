@@ -76,15 +76,7 @@ const removeNote = (title) => {
 const readNote = (title) => {
     console.log('Finding note')
     //try to open the file
-    try {
-        //fetching and store the notes array from the file to the variable 
-        let notesString = fs.readFileSync('note-data.json')
-        //parse to JSON
-        notes = JSON.parse(notesString)
-    }
-    catch (e){
-        //prompt admin the directory does not exists
-    }
+    notes = fetchNotes()
     
     //find the title
     for (var i = 0 ; i < notes.length; i++){
@@ -97,15 +89,7 @@ const readNote = (title) => {
 
 const listNote = () =>{
     console.log('retreiving note')
-    try {
-        //fetching and store the notes array from the file to the variable 
-        let notesString = fs.readFileSync('note-data.json')
-        //parse to JSON
-        notes = JSON.parse(notesString)
-    }
-    catch (e){
-        //prompt admin the directory does not exists
-    }
+    notes = fetchNotes()
 
     notes.forEach(note => {
         console.log(note.title)
