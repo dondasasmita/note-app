@@ -1,4 +1,3 @@
-console.log('Starting note.js')
 const fs = require('fs')
 
 const fetchNotes = () => {
@@ -56,7 +55,8 @@ const removeNote = (title) => {
     let filteredNotes = notes.filter((note) => note.title !== title)
     //saving the new filtered notes
     saveNotes(filteredNotes)
-
+    //return true if note has been removed (length in filtered notes is different from the previous array)
+    return notes.length !== filteredNotes.length
 }
 
 const readNote = (title) => {
