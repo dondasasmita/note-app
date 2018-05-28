@@ -13,8 +13,35 @@ const yargs = require('yargs')
 //to load the contents of the note.js file
 const notes = require('./notes.js')
 
+//title and body args that has to be passed in
+const titleArgs = {
+    describe: 'The title of your note',
+        demand: true,
+        alias: 't'
+}
+
+const bodyArgs = {
+    describe: 'The body of your note',
+        demand: true,
+        alias: 'b'
+}
+
 //access the process/arguments that are passed in the command line 
-const argv = yargs.argv
+const argv = yargs
+//to require arguments to be passed 
+.command('add', 'Add a new note', {
+    title: titleArgs,
+    body:bodyArgs
+})
+.command('list', 'List all notes')
+.command('read', 'Read a note', {
+    title: titleArgs
+})
+.command('remove', 'Remove a note', {
+    title: titleArgs
+})
+.help()
+.argv
 const command = argv._[0]
 const title = argv.title
 const body = argv.body
